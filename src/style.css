@@ -1,0 +1,50 @@
+body {
+    display: grid;
+    grid-template-columns: auto;
+    align-content: center;
+    justify-content: center;
+    padding: 20%;
+  }
+  
+  main {
+    display: inline-block;
+    width: 35vw;
+    padding: 10px 5px;
+    -moz-box-shadow: 0 0 3px #ccc;
+    -webkit-box-shadow: 0 0 3px #ccc;
+    box-shadow: 0 0 3px #ccc;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  .single-item {
+    display: grid;
+    grid-template-columns: 10% 70% 10%;
+    align-items: center;
+  }
+  
+  input[type=text] {
+    border: 0;
+    margin-left: 20px;
+    width: 100%;
+  }
+  
+  input:focus {
+    outline: none;
+  }
+  
+  .foot {
+    text-align: center;
+  }
+  
+  li {
+    padding: 10px 0 10px 0;
+  }
+  
+  .title {
+    margin-left: 20px;
+  }
+  
