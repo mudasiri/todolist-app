@@ -1,5 +1,5 @@
 import './style.css';
-import Helper from './helper';
+import Helper from './helper.js';
 
 const taskData = document.getElementById('mytaskinput');
 document.getElementById('addtaskform').addEventListener('submit', (e) => {

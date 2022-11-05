@@ -24,7 +24,7 @@ export default class Helper {
 
     static updateTask = (newDsc, id) => {
       const toDoList = this.getLocalStorageList();
-      const taskToUpdate = toDoList[id-1];
+      const taskToUpdate = toDoList[id - 1];
 
       toDoList.forEach((item) => {
         if (item === taskToUpdate) {
@@ -53,31 +53,26 @@ export default class Helper {
     }
 
     static setupEdit = (id) => {
-      const todoList = this.getLocalStorageList();
-      const itemToEdit = todoList[id];
-      document.getElementById('desc_'+id).style.display = 'none';
+      document.getElementById(`desc_${id}`).style.display = 'none';
       const editInput = document.getElementById(id);
       editInput.style.display = 'block';
       editInput.focus();
       editInput.addEventListener('keyup', (event) => {
-        if (event.key === "Enter") {
+        if (event.key === 'Enter') {
           event.preventDefault();
           const id = Number(editInput.getAttribute('id'));
-          console.log(id+'me');
-          console.log(editInput.value);
           this.updateTask(editInput.value, id);
-          console.log(editInput.value);
           editInput.style.display = 'none';
-          document.getElementById('desc_'+id).style.display = 'block';
+          document.getElementById(`desc_${id}`).style.display = 'block';
         }
-      })
+      });
     }
 
     static addEditEvent = () => {
       document.querySelectorAll('.edit').forEach((icon) => icon.addEventListener('click', (e) => {
         e.preventDefault();
-        const id = icon.id - 1;
-        this.setupEdit(icon.id);
+        const { id } = icon;
+        this.setupEdit(id);
       }));
     }
 
@@ -96,10 +91,10 @@ export default class Helper {
             currentStatus = '';
             completedTask = '';
           }
-    document.querySelector('.tasks').insertAdjacentHTML('beforeend', `<li> <div class="single-item"> <input type="checkbox" ${currentStatus}> <h3 class="${completedTask}" id="desc_${item.index}"> ${item.description} </h3> <input class="editInput mytaskinput" id="${item.index}" value="${item.description}" hidden> </input> <div class="actions"> <i class="fa-solid fa-pen-to-square edit" id="${item.index}"></i> <i class="fa-solid fa-trash delete" id="${item.index}"></i> </div></div></li><hr>`);
-  });
-       this.addRemoveEvent();
-       this.addEditEvent();
+          document.querySelector('.tasks').insertAdjacentHTML('beforeend', `<li> <div class="single-item"> <input type="checkbox" ${currentStatus}> <h3 class="${completedTask}" id="desc_${item.index}"> ${item.description} </h3> <input class="editInput mytaskinput" id="${item.index}" value="${item.description}" hidden> </input> <div class="actions"> <i class="fa-solid fa-pen-to-square edit" id="${item.index}"></i> <i class="fa-solid fa-trash delete" id="${item.index}"></i> </div></div></li><hr>`);
+        });
+        this.addRemoveEvent();
+        this.addEditEvent();
       };
 
     static addTask = (description) => {
