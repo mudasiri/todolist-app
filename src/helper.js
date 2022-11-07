@@ -1,4 +1,3 @@
-import Interactivity from './interactivity.js';
 import Task from './task.js';
 
 export default class Helper {
@@ -57,7 +56,7 @@ export default class Helper {
     // implement  Edit
     static setupEdit = (id) => {
       document.getElementById(`desc_${id}`).style.display = 'none';
-      const editInput = document.getElementById(id);
+      const editInput = document.getElementById(`edit_${id}`);
       editInput.style.display = 'block';
       editInput.focus();
       editInput.addEventListener('keyup', (event) => {
@@ -79,6 +78,27 @@ export default class Helper {
       }));
     }
 
+    static addCheckboxEvent = () => {
+      document.querySelectorAll("input[type='checkbox']").forEach((box) => box.addEventListener('change', () => {
+        const id = box.id - 1;
+        let currentStatus;
+        if (box.checked === true) {
+          currentStatus = true;
+        } else if (box.checked !== true) {
+          currentStatus = false;
+        }
+
+        this.toggleCompleted(id, currentStatus);
+      }));
+    }
+
+    static toggleCompleted = (id, currentStatus) => {
+      const taskList = Helper.getLocalStorageList();
+      taskList[id].completed = currentStatus;
+      Helper.setLocalStorageList(taskList);
+      Helper.showTaskItems();
+    }
+
       static showTaskItems = () => {
         document.getElementById('tasks').replaceChildren();
         const tasks = this.getLocalStorageList();
@@ -94,11 +114,11 @@ export default class Helper {
             currentStatus = '';
             completedTask = '';
           }
-          document.querySelector('.tasks').insertAdjacentHTML('beforeend', `<li> <div class="single-item"> <input type="checkbox" ${currentStatus} class="checkbox" id="${item.index}"> <h3 class="${completedTask}" id="desc_${item.index}"> ${item.description} </h3> <input class="editInput mytaskinput" id="${item.index}" value="${item.description}" hidden> </input> <div class="actions"> <i class="fa-solid fa-pen-to-square edit" id="${item.index}"></i> <i class="fa-solid fa-trash delete" id="${item.index}"></i> </div></div></li><hr>`);
+          document.querySelector('.tasks').insertAdjacentHTML('beforeend', `<li> <div class="single-item"> <input type="checkbox" ${currentStatus} class="checkbox" id="${item.index}"> <h3 class="${completedTask}" id="desc_${item.index}"> ${item.description} </h3> <input class="editInput mytaskinput" id="edit_${item.index}" value="${item.description}" hidden> </input> <div class="actions"> <i class="fa-solid fa-pen-to-square edit" id="${item.index}"></i> <i class="fa-solid fa-trash delete" id="${item.index}"></i> </div></div></li><hr>`);
         });
         this.addRemoveEvent();
         this.addEditEvent();
-        Interactivity.addCheckboxEvent();
+        this.addCheckboxEvent();
       };
 
     static addTask = (description) => {

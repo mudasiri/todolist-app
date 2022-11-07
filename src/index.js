@@ -14,8 +14,7 @@ document.getElementById('foot').addEventListener('click', () => {
   Interactivity.deleteAllCompletedTasks();
 });
 
-//load tasks and add listeners to checkbox
+// load tasks and add listeners to checkbox
 window.addEventListener('DOMContentLoaded', () => {
   Helper.showTaskItems();
-  Interactivity.addCheckboxEvent();
 });
