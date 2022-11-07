@@ -1,3 +1,4 @@
+import Interactivity from './interactivity.js';
 import Task from './task.js';
 
 export default class Helper {
@@ -35,6 +36,7 @@ export default class Helper {
       this.showTaskItems();
     }
 
+    // implement delete
     static deleteItem = (id) => {
       let taskList = this.getLocalStorageList();
       const itemToDel = taskList[id];
@@ -52,6 +54,7 @@ export default class Helper {
       }));
     }
 
+    // implement  Edit
     static setupEdit = (id) => {
       document.getElementById(`desc_${id}`).style.display = 'none';
       const editInput = document.getElementById(id);
@@ -91,10 +94,11 @@ export default class Helper {
             currentStatus = '';
             completedTask = '';
           }
-          document.querySelector('.tasks').insertAdjacentHTML('beforeend', `<li> <div class="single-item"> <input type="checkbox" ${currentStatus}> <h3 class="${completedTask}" id="desc_${item.index}"> ${item.description} </h3> <input class="editInput mytaskinput" id="${item.index}" value="${item.description}" hidden> </input> <div class="actions"> <i class="fa-solid fa-pen-to-square edit" id="${item.index}"></i> <i class="fa-solid fa-trash delete" id="${item.index}"></i> </div></div></li><hr>`);
+          document.querySelector('.tasks').insertAdjacentHTML('beforeend', `<li> <div class="single-item"> <input type="checkbox" ${currentStatus} class="checkbox" id="${item.index}"> <h3 class="${completedTask}" id="desc_${item.index}"> ${item.description} </h3> <input class="editInput mytaskinput" id="${item.index}" value="${item.description}" hidden> </input> <div class="actions"> <i class="fa-solid fa-pen-to-square edit" id="${item.index}"></i> <i class="fa-solid fa-trash delete" id="${item.index}"></i> </div></div></li><hr>`);
         });
         this.addRemoveEvent();
         this.addEditEvent();
+        Interactivity.addCheckboxEvent();
       };
 
     static addTask = (description) => {
