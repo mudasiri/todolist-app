@@ -1,29 +1,13 @@
 import './style.css';
+import Helper from './helper.js';
 
-const tasks = [
-  {
-    id: '1',
-    description: 'Bath the dogs',
-    completed: false,
-  },
-  {
-    id: '2',
-    description: 'Ali Baaba',
-    completed: false,
-  },
-  {
-    id: '3',
-    description: 'Mudasir Issah',
-    completed: false,
-  },
+const taskData = document.getElementById('mytaskinput');
+document.getElementById('addtaskform').addEventListener('submit', (e) => {
+  e.preventDefault();
+  Helper.addTask(taskData.value);
+  taskData.value = '';
+});
 
-];
-
-const showTasks = () => {
-  tasks.sort((a, b) => a.index - b.index);
-  tasks.forEach((item) => {
-    document.querySelector('.tasks').insertAdjacentHTML('beforeend', `<li> <div class="single-item"> <input type="checkbox"> ${item.description} <i class="fa-solid fa-ellipsis-vertical"></i></div></li><hr>`);
-  });
-};
-
-showTasks();
+window.addEventListener('DOMContentLoaded', () => {
+  Helper.showTaskItems();
+});
