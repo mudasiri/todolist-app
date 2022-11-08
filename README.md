@@ -42,7 +42,7 @@ You can use vscode extension or just run the index file. (I have yet to set up l
 
 
 ### Deployment
-
+[View App](https://mudasiri.github.io/todolist-app/dist/)
 ## Contact me
 
 <a href="https://github.com/mudasiri/">Github</a>
