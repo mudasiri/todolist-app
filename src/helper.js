@@ -8,11 +8,11 @@ export default class Helper {
     static getLocalStorageList = () => {
       let todoList;
 
-      if (JSON.parse(localStorage.getItem('todoListItems')) === null) {
+    if (JSON.parse(localStorage.getItem('todoListItems')) === null) {
         todoList = [];
       } else {
         todoList = JSON.parse(localStorage.getItem('todoListItems'));
-      }
+      } 
       return todoList;
     }
 
@@ -62,7 +62,7 @@ export default class Helper {
       editInput.addEventListener('keyup', (event) => {
         if (event.key === 'Enter') {
           event.preventDefault();
-          const id = Number(editInput.getAttribute('id'));
+          const id = Number(editInput.getAttribute('id').slice(5));
           this.updateTask(editInput.value, id);
           editInput.style.display = 'none';
           document.getElementById(`desc_${id}`).style.display = 'block';
