@@ -6,13 +6,7 @@ export default class Helper {
     }
 
     static getLocalStorageList = () => {
-      let todoList;
-
-    if (JSON.parse(localStorage.getItem('todoListItems')) === null) {
-        todoList = [];
-      } else {
-        todoList = JSON.parse(localStorage.getItem('todoListItems'));
-      } 
+      const todoList = JSON.parse(localStorage.getItem('todoListItems')) || [];
       return todoList;
     }
 
