@@ -34,8 +34,8 @@ describe('Add new task', () => {
 
   test('Add two new objects to local storage', () => {
     // Arrange
-    const dscOne = 'Going to work';
-    const dscTwo = 'Find lunch';
+    const dscOne = 'Go for a walk';
+    const dscTwo = 'Find my Keys';
 
     // Act
     const addTodoTaskSpy = jest.spyOn(Helper, 'addTask');
@@ -51,7 +51,7 @@ describe('Add new task', () => {
 
   test('Add new task to UI', () => {
     // Arrange
-    const dscOne = 'Going to work';
+    const dscOne = 'Going to Gym';
 
     // Act
     const addTodoTaskSpy = jest.spyOn(Helper, 'addTask');
@@ -119,6 +119,5 @@ describe('Delete todo task', () => {
     expect(deleteTodoTaskSpy).toHaveBeenCalledTimes(1);
     expect(result[0].index).toBe(1);
     expect(result).toHaveLength(1);
-
   });
 });
