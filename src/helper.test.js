@@ -9,16 +9,15 @@ describe('Add new task', () => {
     document.body.innerHTML = `
     <div class="task-list-area">
     <ul class="tasks" id="tasks">
-
     </ul>
-</div>
+    </div>
 `;
   });
 
   test('Add new task object to local storage', () => {
     // Arrange
     const obj = {
-      description: 'new task item',
+      description: 'my new task item',
       index: 1,
       completed: false,
     };
@@ -73,7 +72,6 @@ describe('Delete todo task', () => {
     document.body.innerHTML = `
      <div class="task-list-area">
     <ul class="tasks" id="tasks">
-
     </ul>
 </div>
   `;
@@ -121,5 +119,6 @@ describe('Delete todo task', () => {
     expect(deleteTodoTaskSpy).toHaveBeenCalledTimes(1);
     expect(result[0].index).toBe(1);
     expect(result).toHaveLength(1);
+
   });
 });
