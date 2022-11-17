@@ -168,8 +168,4 @@ describe('Updating Task Items', () => {
     expect(statusUpdateTaskSpy).toHaveBeenCalledTimes(1);
     expect(result[2].completed).toBe(true);
   });
-
-  test('Testing Clear all function', () => {
-
-  });
 });
