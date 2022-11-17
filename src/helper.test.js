@@ -116,7 +116,7 @@ describe('Delete todo task', () => {
     Helper.deleteItem(id);
     const result = JSON.parse(window.localStorage.getItem('todoListItems'));
 
-    //Assert
+    // Assert
     expect(deleteTodoTaskSpy).toHaveBeenCalledTimes(1);
     expect(result[0].index).toBe(1);
     expect(result).toHaveLength(1);
@@ -125,52 +125,51 @@ describe('Delete todo task', () => {
 
 // Testing update and clear all function
 describe('Updating Task Items', () => {
-    beforeEach(() => {
-        localStorage.clear();
-        jest.clearAllMocks();
-        localStorage.setItem.mockClear();
-        document.body.innerHTML = `
+  beforeEach(() => {
+    localStorage.clear();
+    jest.clearAllMocks();
+    localStorage.setItem.mockClear();
+    document.body.innerHTML = `
          <div class="task-list-area">
         <ul class="tasks" id="tasks">
         </ul>
     </div>
       `;
-      });
+  });
 
-    test('Edit single task Item description', () => {
-        //Arrange
-        Helper.addTask('new task 1');
-        Helper.addTask('new task 2');
-        Helper.addTask('new task 3');
+  test('Edit single task Item description', () => {
+    // Arrange
+    Helper.addTask('new task 1');
+    Helper.addTask('new task 2');
+    Helper.addTask('new task 3');
 
-        //Act
-        const updateTaskSpy = jest.spyOn(Helper, 'updateTask');
-        Helper.updateTask('New task 2 Edited',2);
-        const result = JSON.parse(window.localStorage.getItem('todoListItems'));
+    // Act
+    const updateTaskSpy = jest.spyOn(Helper, 'updateTask');
+    Helper.updateTask('New task 2 Edited', 2);
+    const result = JSON.parse(window.localStorage.getItem('todoListItems'));
 
-        //Assert
+    // Assert
     expect(updateTaskSpy).toHaveBeenCalledTimes(1);
     expect(result[1].description).toEqual('New task 2 Edited');
+  });
 
-    });
+  test('Update status of task', () => {
+    // Arrange
+    Helper.addTask('new task 1');
+    Helper.addTask('new task 2');
+    Helper.addTask('new task 3');
 
-    test('Update status of task', () => {
-        //Arrange
-        Helper.addTask('new task 1');
-        Helper.addTask('new task 2');
-        Helper.addTask('new task 3');
+    // Act
+    const statusUpdateTaskSpy = jest.spyOn(Helper, 'toggleCompleted');
+    Helper.toggleCompleted(2, true);
+    const result = JSON.parse(window.localStorage.getItem('todoListItems'));
 
-        //Act
-        const statusUpdateTaskSpy = jest.spyOn(Helper, 'toggleCompleted');
-        Helper.toggleCompleted(2,true);
-        const result = JSON.parse(window.localStorage.getItem('todoListItems'));
-
-         //Assert
+    // Assert
     expect(statusUpdateTaskSpy).toHaveBeenCalledTimes(1);
     expect(result[2].completed).toBe(true);
-    });
+  });
 
-    test('Testing Clear all function', () => {
-        
-    })
-})
+  test('Testing Clear all function', () => {
+
+  });
+});
