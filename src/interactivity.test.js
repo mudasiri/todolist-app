@@ -2,7 +2,7 @@
 import Interactivity from "./interactivity.js";
 import Helper from './helper.js';
 
-describe('', () => {
+describe('Testing Interactivity Module', () => {
     beforeEach(() => {
         localStorage.clear();
         jest.clearAllMocks();
@@ -11,7 +11,7 @@ describe('', () => {
          <div class="task-list-area">
         <ul class="tasks" id="tasks">
         </ul>
-    </div>
+        </div>
       `;
       });
     test('Testing Clear all completed task function', () => {
@@ -30,5 +30,5 @@ describe('', () => {
          //Assert
     expect(statusUpdateTaskSpy).toHaveBeenCalledTimes(1);
     expect(result).toHaveLength(1);
-    })
-})
+    });
+});
