@@ -3,11 +3,11 @@ import Interactivity from './interactivity.js';
 import Helper from './helper.js';
 
 describe('Testing Interactivity Module', () => {
-    beforeEach(() => {
-        localStorage.clear();
-        jest.clearAllMocks();
-        localStorage.setItem.mockClear();
-        document.body.innerHTML = `
+  beforeEach(() => {
+    localStorage.clear();
+    jest.clearAllMocks();
+    localStorage.setItem.mockClear();
+    document.body.innerHTML = `
          <div class="task-list-area">
         <ul class="tasks" id="tasks">
         </ul>
@@ -30,5 +30,5 @@ describe('Testing Interactivity Module', () => {
     // Assert
     expect(statusUpdateTaskSpy).toHaveBeenCalledTimes(1);
     expect(result).toHaveLength(1);
-    });
+  });
 });
